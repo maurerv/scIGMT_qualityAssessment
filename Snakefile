@@ -1,3 +1,10 @@
+""" Snakemake pipeline for scIGMT quality assesssment
+
+    Copyright (C) 2022
+
+    Author: Valentin Maurer <valentin.maurer@embl-hamburg.de>
+"""
+
 from os import extsep
 from os.path import join, realpath, exists, splitext, basename
 
