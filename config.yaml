@@ -1,6 +1,6 @@
-input : "/omics/groups/OE0219/internal/Valentin/JMMLT/processing/quality_assessment/test.csv"
-OUTDIR: "/omics/groups/OE0219/internal/Valentin/JMMLT/processing/quality_assessment"
-REFERENCE: "/omics/groups/OE0219/internal/Valentin/genomes/hg38_ensembl/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa"
+input : ""
+OUTDIR: ""
+REFERENCE: ""
 FASTQ_EXTENSIONS:
   - "fastq.gz"
   - "fastq"

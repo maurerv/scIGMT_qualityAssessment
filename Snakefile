@@ -1,10 +1,3 @@
-""" Snakemake pipeline for scIGMT quality assesssment
-
-    Copyright (C) 2022
-
-    Author: Valentin Maurer <valentin.maurer@embl-hamburg.de>
-"""
-
 from os import extsep
 from os.path import join, realpath, exists, splitext, basename
 
@@ -78,8 +71,6 @@ rule fastqc:
         join(OUTDIR, "{modality}", "{sample}_fastqc.zip"),
     singularity:
         "docker://pegi3s/fastqc"
-    conda:
-        "env.yml"
     resources:
         avg_mem  = lambda wildcards, attempt: 800 * attempt,
         mem_mb   = lambda wildcards, attempt: 1000 * attempt,
@@ -98,8 +89,6 @@ rule samtools_stats:
         join(OUTDIR, "{modality}", "{sample}.samtoolsStats.txt")
     singularity:
         "docker://staphb/samtools"
-    conda:
-        "env.yml"
     resources:
         avg_mem  = lambda wildcards, attempt: 400 * attempt,
         mem_mb   = lambda wildcards, attempt: 600 * attempt,
@@ -114,11 +103,8 @@ rule bam_coverage:
         find_bams,
     output:
         join(OUTDIR, "{modality}", "{sample}.mosdepth.global.dist.txt")
-    # Docker container fo rthis one does not work
-#    singularity:
-#        "docker://quay.io/biocontainers/mosdepth:0.2.4--he527e40_0"
-    conda:
-        "env.yml"
+   singularity:
+        "docker://quay.io/biocontainers/mosdepth:0.2.4--he527e40_0"
     resources:
         avg_mem  = lambda wildcards, attempt: 2000 * attempt,
         mem_mb   = lambda wildcards, attempt: 2400 * attempt,
@@ -139,8 +125,6 @@ rule bisulfite_qc:
         cpgStats = join(OUTDIR, "{modality}", "{sample}.CpGCoverage.txt")
     singularity:
         "docker://nfcore/methylseq"
-    conda:
-        "env.yml"
     params:
         genome_reference = config["REFERENCE"]
     resources:
@@ -157,7 +141,6 @@ rule bisulfite_qc:
             {params.genome_reference} \
             {input}
 
-        # chr N_covered N_meth N_umeth, conversion rate, average methylation
         awk '
           BEGIN{{FS=OFS="\t"}}
           NR>1{{
@@ -196,8 +179,6 @@ rule insert_size:
         join(OUTDIR, "{modality}", "{sample}.insertSize.txt")
     singularity:
         "docker://broadinstitute/picard"
-    conda:
-        "env.yml"
     resources:
         avg_mem  = lambda wildcards, attempt: 800 * attempt,
         mem_mb   = lambda wildcards, attempt: 1000 * attempt,
@@ -234,8 +215,6 @@ rule multiqc:
         join(OUTDIR, "{modality}", "multiqc_report.html")
     singularity:
         "docker://ewels/multiqc"
-    conda:
-        "env.yml"
     resources:
         avg_mem  = lambda wildcards, attempt: 5000 * attempt,
         mem_mb   = lambda wildcards, attempt: 6000 * attempt,
