@@ -26,14 +26,16 @@ All pipeline steps can also be run within singularity containers, for which [Sin
 ## Running the pipeline
 
 Adapting the pipeline to your use cases requires at least three changes to the config.yaml.
-```input``` is the absolute path to a semicolon separated sample sheet without headers and the following format:
-Modality					Path					ID
-Methylome/Transcriptome		Absolute path to file 	Unique sample ID
-...
-```OUTDIR``` is the absolute path to directory to which the results will be written.
-```REFERENCE``` is the absolute path to a reference genome fasta file.
-```FASTQ_EXTENSIONS``` and ```BAM_EXTENSIONS``` are optional files that specify the range
-of file suffixes that mark a given file as FASTQ or BAM.
+
+
+1. ```input``` is the absolute path to a semicolon separated sample sheet without headers and the following format:
+    | Modality  | Path | ID |
+    | ----- | ---- | ---- |
+    | Methylome or Transcriptome  | Absolute path to file | Unique sample ID |
+
+2. ```OUTDIR``` is the absolute path to directory to which the results will be written,
+3. ```REFERENCE``` is the absolute path to a reference genome fasta file.
+```FASTQ_EXTENSIONS``` and ```BAM_EXTENSIONS``` are optional files that specify the range of file suffixes that mark a given file as FASTQ or BAM.
 
 
 ## Result
