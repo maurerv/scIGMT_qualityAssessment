@@ -29,9 +29,9 @@ Adapting the pipeline to your use cases requires at least three changes to the c
 
 
 1. ```input``` is the absolute path to a semicolon separated sample sheet without headers and the following format:
-    | Modality  | Path | ID |
+    | Path  | Modality | ID |
     | ----- | ---- | ---- |
-    | Methylome or Transcriptome  | Absolute path to file | Unique sample ID |
+    | Absolute path to file  | Methylome or Transcriptome | Unique sample ID |
 
 2. ```OUTDIR``` is the absolute path to directory to which the results will be written,
 3. ```REFERENCE``` is the absolute path to a reference genome fasta file.
