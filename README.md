@@ -36,7 +36,7 @@ Adapting the pipeline to your use cases requires at least three changes to the c
 2. ```OUTDIR``` is the absolute path to directory to which the results will be written,
 3. ```REFERENCE``` is the absolute path to a reference genome fasta file.
 
-```FASTQ_EXTENSIONS``` and ```BAM_EXTENSIONS``` are optional files that specify the range of file suffixes that mark a given file as FASTQ or BAM.
+```FASTQ_EXTENSIONS``` and ```BAM_EXTENSIONS``` are optional and specify file suffixes that mark a given file as FASTQ or BAM.
 
 
 ## Result
