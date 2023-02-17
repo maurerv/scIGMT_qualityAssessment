@@ -116,7 +116,6 @@ rule bam_coverage:
     shell:
         "mosdepth -n {params.outdir}/{wildcards.modality}/{wildcards.sample} {input}"
 
-
 rule bisulfite_qc:
     input:
         find_bams,
@@ -171,14 +170,13 @@ rule bisulfite_qc:
 
         """
 
-# This will only work with --use-singularity
 rule insert_size:
     input:
         find_bams,
     output:
         join(OUTDIR, "{modality}", "{sample}.insertSize.txt")
     singularity:
-        "docker://broadinstitute/picard"
+        "docker://dquz/picard:latest"
     resources:
         avg_mem  = lambda wildcards, attempt: 800 * attempt,
         mem_mb   = lambda wildcards, attempt: 1000 * attempt,
@@ -186,7 +184,7 @@ rule insert_size:
         attempt  = lambda wildcards, attempt: attempt,
     threads: 1
     shell:"""
-        java -jar /usr/picard/picard.jar CollectInsertSizeMetrics \
+        picard CollectInsertSizeMetrics \
             -I {input} \
             -O {output} \
             -H /dev/null \
